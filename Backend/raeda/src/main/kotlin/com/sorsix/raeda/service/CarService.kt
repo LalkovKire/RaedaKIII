@@ -85,7 +85,8 @@ class CarService(
         ).toCarResponse()
     }
 
-    fun getLatestInventory() = this.carRepository.getLatestInventory()
+    fun getLatestInventory() =
+        this.carRepository.getLatestInventory()
 
     fun deleteCar(id: Long): CarResponse {
         val tmp = this.getCarById(id)
