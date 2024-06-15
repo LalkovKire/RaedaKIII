@@ -1,0 +1,121 @@
+<div class="wrapper pb-72">
+  <app-navbar></app-navbar>
+
+  <h3 class="h3 mt-10 uppercase">My Rentals</h3>
+
+  <div class="relative overflow-x-auto shadow-md sm:rounded-lg mt-5">
+    <table class="w-full text-sm text-left rtl:text-right text-clr-gray-5">
+      <thead class="text-xs text-clr-gray-7 uppercase bg-clr-gray-3">
+      <tr>
+        <th scope="col" class="px-6 py-3">
+          Rent ID
+        </th>
+        <th scope="col" class="px-6 py-3">
+          Car
+        </th>
+        <th scope="col" class="px-6 py-3">
+          Pickup Date
+        </th>
+        <th scope="col" class="px-6 py-3">
+          DropOff Date
+        </th>
+        <th scope="col" class="px-6 py-3">
+          Price per Day
+        </th>
+        <th scope="col" class="px-6 py-3">
+          Duration
+        </th>
+        <th scope="col" class="px-6 py-3">
+          Total
+        </th>
+        <th scope="col" class="px-6 py-3">
+          PDF
+        </th>
+        <th scope="col" class="px-6 py-3">
+          <span class="cursor-pointer">
+            Review
+          </span>
+        </th>
+      </tr>
+      </thead>
+      <tbody>
+        @for (item of rents; track item.rentalID) {
+          <tr class="bg-clr-gray-2 text-clr-gray-7 border-b hover:bg-clr-gray-3">
+            <th scope="row" class="px-6 py-4 font-medium text-clr-black whitespace-nowrap">
+              {{ item.rentalID }}
+            </th>
+            <td class="px-6 py-4 text-blue-500">
+              <a [routerLink]="['/cars', item.car.carID]">
+                {{ item.car.brand }} {{ item.car.model }} {{ item.car.carType }}
+              </a>
+            </td>
+            <td class="px-6 py-4">
+              {{ item.pickupTime | date }}
+            </td>
+            <td class="px-6 py-4">
+              {{ item.dropOffTime | date }}
+            </td>
+            <td class="px-6 py-4">
+              {{ item.car.price }}€ per day
+            </td>
+            <td class="px-6 py-4">
+              {{ item.rentalDuration }} / {{ item.rentalDuration === 1 ? 'day' : 'days' }}
+            </td>
+            <td class="px-6 py-4">
+              {{ item.totalPrice }}€
+            </td>
+            <td class="px-6 py-4">
+              <a href="">
+                <img src="/assets/images/icons/download.svg" alt="Download Icon">
+              </a>
+            </td>
+            <td class="px-6 py-4">
+              <button class="px-3 py-2 bg-clr-black text-clr-white rounded" (click)="onShowModal(item.rentalID)">
+                Rate
+              </button>
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+</div>
+<app-footer></app-footer>
+<p-dialog
+  [(visible)]="visible"
+  closable="true"
+  [modal]="true"
+  [draggable]="false"
+  [resizable]="false"
+  (onHide)="onHideModal()"
+>
+  <div class="max-w-lg mx-auto text-center px-4">
+    <header class="mb-8">
+      <h3 class="text-2xl font-bold mb-1 h3">Rate Us!</h3>
+      <p class="text-[15px] text-clr-gray-5">Your input is super important in helping us understanding your needs
+        better, so we can customize out service to suit you perfectly</p>
+    </header>
+    <form id="otp-form" [formGroup]="form" (ngSubmit)="onSubmit()">
+      <div class="flex flex-col items-center justify-center gap-3">
+        <div>
+          <p-rating cancel="false" formControlName="rating"></p-rating>
+        </div>
+        <div>
+        <textarea
+          rows="5"
+          cols="30"
+          class="textarea"
+          placeholder="Summary.."
+          formControlName="description"
+        >
+    </textarea>
+        </div>
+      </div>
+      <div class="max-w-[260px] mx-auto mt-4">
+        <button type="submit" class="btn btn-primary" [disabled]="!form.valid">
+          Submit
+        </button>
+      </div>
+    </form>
+  </div>
+</p-dialog>

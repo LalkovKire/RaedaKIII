@@ -1,0 +1,74 @@
+<section class="flex flex-col gap-10 items-center" id="home">
+  <header class="flex flex-col items-center">
+    <h1 class="h1">
+      Easy and fast way to <span class="text-clr-black">rent</span> a car.
+    </h1>
+    <p class="p">
+      Choose a rental company online, pick your dates and car type, review
+      terms, book, provide ID and payment upon pickup, inspect the car, sign,
+      and go!
+    </p>
+  </header>
+  <main>
+    <form
+      class="flex gap-5 items-end shadow-xl px-10 py-8 rounded-3xl bg-clr-gray-2"
+      [formGroup]="form"
+      (ngSubmit)="onSubmit()"
+    >
+      <div class="form-control">
+        <label class="label">Pickup Location</label>
+        <p-dropdown
+          class="ng-dirty ng-invalid"
+          formControlName="location"
+          [options]="locations"
+          placeholder="Select a City"
+          styleClass="input select"
+        ></p-dropdown>
+      </div>
+      <div class="form-control">
+        <label for="pickup" class="label">Pickup Date</label>
+        <p-calendar
+          formControlName="pickupDate"
+          [minDate]="minDatePickup"
+          [showIcon]="true"
+          readonlyInput="true"
+          iconDisplay="input"
+          inputId="pickup"
+          inputStyleClass="input input-date"
+        ></p-calendar>
+      </div>
+      <button class="btn btn-primary flex gap-3 items-center" type="submit">
+        Search
+        <img
+          src="/assets/images/icons/search.svg"
+          alt="Search Icon"
+          class="w-[14px]"
+        />
+      </button>
+    </form>
+    <img
+      src="/assets/images/cars/hero-car.png"
+      alt="Hero Car"
+      class="w-[600px] mx-auto"
+    />
+  </main>
+  <footer class="flex gap-5">
+    <brand-card
+      src="/assets/images/brand/porsche.svg"
+      alt="Porsche Logo"
+    ></brand-card>
+    <brand-card
+      src="/assets/images/brand/audi.svg"
+      alt="Audi Logo"
+    ></brand-card>
+    <brand-card
+      src="/assets/images/brand/volkswagen.svg"
+      alt="Volkswagen Logo"
+    ></brand-card>
+    <brand-card
+      src="/assets/images/brand/mercedes.svg"
+      alt="Mercedes Logo"
+    ></brand-card>
+    <brand-card src="/assets/images/brand/bmw.svg" alt="BWM Logo"></brand-card>
+  </footer>
+</section>

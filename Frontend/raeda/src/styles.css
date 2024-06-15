@@ -1,0 +1,107 @@
+@import "../node_modules/tailwindcss/base.css" layer(tailwindcss);
+@import "../node_modules/tailwindcss/components.css" layer(tailwindcss);
+@import "../node_modules/tailwindcss/utilities.css" layer(tailwindcss);
+@import "primeng/resources/themes/lara-light-blue/theme.css";
+@import "primeng/resources/primeng.css";
+@import url("https://fonts.googleapis.com/css2?family=Questrial&display=swap");
+
+html {
+  @apply scroll-smooth;
+}
+
+body {
+  font-family: "Inter", sans-serif;
+  @apply bg-clr-gray-1;
+}
+
+header .h1 {
+  @apply w-[750px] text-center;
+}
+
+header .p {
+  @apply w-[500px] mt-5;
+}
+
+a {
+  @apply cursor-pointer font-semibold text-clr-gray-5;
+}
+
+li a {
+  @apply cursor-pointer font-normal text-clr-gray-5 hover:font-semibold;
+}
+
+.wrapper {
+  @apply container mx-auto max-w-[1100px];
+}
+
+.form-control {
+  @apply flex flex-col gap-1;
+}
+
+.h1 {
+  @apply text-[58px] font-bold capitalize leading-tight  text-clr-gray-6;
+}
+
+.h2 {
+  @apply text-[40px] font-semibold;
+}
+
+.h3 {
+  @apply text-[30px] font-semibold text-clr-gray-6;
+}
+
+.h4 {
+  @apply font-semibold text-clr-gray-6 text-xl;
+}
+
+.p {
+  @apply text-center  text-clr-gray-5;
+}
+
+.btn {
+  @apply font-semibold rounded-lg px-5 transition-all duration-300 ease-in-out h-11 disabled:bg-clr-gray-6 disabled:hover:bg-clr-gray-6;
+}
+
+.btn-primary {
+  @apply bg-clr-black text-clr-white hover:bg-clr-gray-7;
+}
+
+.btn-primary-outline {
+  @apply border-2 border-clr-black text-clr-black hover:bg-clr-black  hover:text-clr-white;
+}
+
+.label {
+  @apply font-medium text-clr-gray-5;
+}
+
+.input {
+  @apply w-full h-11 bg-transparent border border-clr-gray-4 text-clr-gray-6  rounded-lg placeholder:text-clr-gray-4 px-3 focus-visible:outline-none focus:border-clr-gray-7;
+}
+
+.input-date {
+  @apply w-[150px] cursor-pointer;
+}
+
+.select {
+  @apply w-[200px] leading-none p-0;
+}
+
+.label-peer {
+  @apply absolute duration-300 transform -translate-y-3 scale-75 top-1 z-10 origin-[0] bg-clr-gray-2 px-2 peer-focus:px-2 peer-focus:text-clr-gray-5 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-1 peer-focus:scale-75 peer-focus:-translate-y-3 start-1 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto;
+}
+
+.checkbox {
+  @apply w-4 h-4;
+}
+
+.label-radio {
+  @apply block bg-clr-gray-5 text-clr-white font-bold capitalize px-3 py-3 rounded-lg hover:bg-clr-black peer-checked:bg-clr-black transition-all duration-300 ease-in-out;
+}
+
+.input-w-200 {
+  @apply w-[200px];
+}
+
+.textarea {
+  @apply bg-transparent border border-clr-gray-4 text-clr-gray-6 rounded-lg placeholder:text-clr-gray-4 p-2 focus-visible:outline-none focus:border-clr-gray-7
+}

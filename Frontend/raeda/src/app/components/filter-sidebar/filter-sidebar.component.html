@@ -1,0 +1,74 @@
+<p-sidebar
+  [(visible)]="toggle === undefined ? false : toggle"
+  blockScroll="true"
+  styleClass="w-[400px]"
+  (onHide)="hide()"
+>
+  <ng-template pTemplate="header">
+    <h2 class="text-clr-white text-[30px] font-bold">Filter By</h2>
+  </ng-template>
+  <form [formGroup]="form">
+    <p-accordion multiple="false">
+      <p-accordionTab header="Location">
+        <p-listbox
+          [options]="defaultSelectionValuesService.locations"
+          formControlName="selectedLocation"
+          [listStyle]="{ 'max-height': '220px' }"
+          metaKeySelection="true"
+        />
+      </p-accordionTab>
+      <p-accordionTab header="Pickup Date">
+        <p-calendar
+          formControlName="selectedPickupDate"
+          [inline]="true"
+          [minDate]="defaultSelectionValuesService.minDate()"
+        />
+      </p-accordionTab>
+      <p-accordionTab header="Price Range">
+        <p-listbox
+          [options]="defaultSelectionValuesService.prices"
+          formControlName="selectedPrice"
+          optionLabel="title"
+          [listStyle]="{ 'max-height': '220px' }"
+          metaKeySelection="true"
+        />
+      </p-accordionTab>
+      <p-accordionTab header="Brand">
+        <p-listbox
+          [options]="defaultSelectionValuesService.brands"
+          formControlName="selectedBrands"
+          [listStyle]="{ 'max-height': '220px' }"
+          multiple="true"
+        />
+      </p-accordionTab>
+      <p-accordionTab header="Year">
+        <p-listbox
+          [options]="defaultSelectionValuesService.years"
+          formControlName="selectedYears"
+          [listStyle]="{ 'max-height': '220px' }"
+          multiple="true"
+        />
+      </p-accordionTab>
+      <p-accordionTab header="Fuel Type">
+        <p-listbox
+          [options]="defaultSelectionValuesService.fuels"
+          formControlName="selectedFuel"
+          [listStyle]="{ 'max-height': '220px' }"
+          metaKeySelection="true"
+        />
+      </p-accordionTab>
+      <p-accordionTab header="Gear Box">
+        <p-listbox
+          [options]="defaultSelectionValuesService.gears"
+          formControlName="selectedGear"
+          [listStyle]="{ 'max-height': '220px' }"
+          metaKeySelection="true"
+        />
+      </p-accordionTab>
+    </p-accordion>
+    <div class="flex gap-2 mt-5">
+      <label for="switch" class="label cursor-pointer">Available only</label>
+      <p-inputSwitch inputId="switch" formControlName="selectedAvailability" />
+    </div>
+  </form>
+</p-sidebar>

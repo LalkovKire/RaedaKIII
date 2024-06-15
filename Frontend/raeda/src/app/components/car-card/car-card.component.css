@@ -1,0 +1,23 @@
+.icon {
+  @apply w-[18px];
+}
+
+li li {
+  @apply flex gap-2 items-center;
+}
+
+ul div {
+  @apply flex flex-col gap-2;
+}
+
+small {
+  @apply text-clr-gray-5;
+}
+
+.not-available {
+  @apply opacity-60;
+}
+
+.card-hover {
+  @apply hover:scale-105 transition duration-300 ease-in-out;
+}

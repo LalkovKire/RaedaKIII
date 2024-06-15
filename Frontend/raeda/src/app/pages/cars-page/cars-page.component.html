@@ -1,0 +1,32 @@
+<div class="wrapper flex flex-col gap-20">
+  <app-navbar></app-navbar>
+  <div class="flex flex-col gap-5 max-w-[940px] mx-auto">
+    @if (isLoading) {
+      <app-loading></app-loading>
+    } @else if (error) {
+      <div class="mt-4">
+        <app-error> Something went wrong. Please try again later!</app-error>
+      </div>
+    } @else if (warning) {
+      <div class="mt-4">
+        <app-warning>No data available.</app-warning>
+      </div>
+    } @else {
+      <div>
+        <button class="btn btn-primary" (click)="onToggleFilterBy()">
+          Filter
+        </button>
+      </div>
+      <ul class="flex flex-wrap justify-center gap-5">
+        @for (car of cars; track $index) {
+          <car-card [car]="car"></car-card>
+        }
+      </ul>
+    }
+  </div>
+</div>
+<div class="wrapper pb-72 block">
+  <app-paginator (carsChanged)="onCarsChanged($event)"></app-paginator>
+</div>
+<app-filter-sidebar></app-filter-sidebar>
+<app-footer></app-footer>

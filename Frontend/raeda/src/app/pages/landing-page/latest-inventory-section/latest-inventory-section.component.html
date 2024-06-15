@@ -1,0 +1,22 @@
+<section id="latest">
+  <header class="flex flex-col items-center">
+    <h1 class="h1">Latest <span class="text-clr-black">Inventory</span></h1>
+    <p class="p">Explore our latest inventory of brand-new vehicles today.</p>
+  </header>
+  @if(isLoading && !error) {
+  <div class="flex justify-center mt-10">
+    <app-loading></app-loading>
+  </div>
+  } @else if (!isLoading && error) {
+  <div class="flex justify-center">
+    <div class="mt-4">
+      <app-error>{{ error }}</app-error>
+    </div>
+  </div>
+  } @else {
+
+  <div>
+    <app-cards [cars]="cars"></app-cards>
+  </div>
+  }
+</section>

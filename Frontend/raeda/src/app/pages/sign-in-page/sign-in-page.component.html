@@ -1,0 +1,70 @@
+<div class="flex flex-col items-center justify-center mx-auto h-screen">
+  <a routerLink="/">
+    <img
+      class="w-[200px] mb-6 cursor-pointer"
+      src="/assets/images/logo/logo-black.svg"
+      alt="logo"
+    />
+  </a>
+  <div class="w-full rounded-lg shadow-2xl dark:border max-w-md bg-clr-white">
+    <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
+      <h3 class="h3">Sign in to your account</h3>
+      <form class="space-y-4" [formGroup]="form" (ngSubmit)="onSubmit()">
+        <div class="form-control">
+          <label for="email" class="label">Your email</label>
+          <input
+            type="email"
+            id="email"
+            class="input"
+            placeholder="name@company.com"
+            formControlName="email"
+          />
+        </div>
+        <div class="form-control">
+          <label for="password" class="label">Password</label>
+          <p-password
+            formControlName="password"
+            [toggleMask]="true"
+            inputStyleClass="input"
+            [style]="{ width: '100%' }"
+            inputId="password"
+            feedback="false"
+            placeholder="••••••••"
+          ></p-password>
+          <!-- <input
+            type="password"
+            name="password"
+            id="password"
+            placeholder="••••••••"
+            class="input input-error"
+            formControlName="password"
+          /> -->
+        </div>
+        <div class="flex items-center justify-between">
+          <div class="flex items-center gap-2">
+            <input
+              id="remember"
+              type="checkbox"
+              class="checkbox"
+              formControlName="rememberMe"
+            />
+
+            <label for="remember" class="label">Remember me</label>
+          </div>
+          <a href="#" class="">Forgot password?</a>
+        </div>
+        <button
+          type="submit"
+          class="btn btn-primary w-full"
+          [disabled]="!form.valid || isSubmitting"
+        >
+          Sign in
+        </button>
+        <p class="p">
+          Don’t have an account yet?
+          <a routerLink="/signup">Sign up</a>
+        </p>
+      </form>
+    </div>
+  </div>
+</div>

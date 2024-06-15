@@ -1,0 +1,111 @@
+<li
+  [ngClass]="[
+    car?.status === 'AVAILABLE' ? 'card-hover' : '',
+    car?.status !== 'AVAILABLE' ? 'not-available' : ''
+  ]"
+>
+  <div
+    class="inline-flex flex-col items-center gap-5 bg-clr-gray-2 rounded-2xl shadow-2xl pb-5 w-[300px] h-[480px] overflow-hidden"
+  >
+    <div class="w-full h-[180px]">
+      <img
+        [src]="car?.image"
+        [alt]="car?.model"
+        class="h-full w-full object-cover"
+      />
+    </div>
+    <div class="text-center">
+      <h4 class="h4">{{ car?.model }}</h4>
+      <small>{{ car?.carType }}</small>
+    </div>
+    <ul class="flex items-center gap-5 px-5">
+      <div>
+        <li>
+          <img
+            src="/assets/images/icons/seat.svg"
+            alt="Seat icon"
+            class="icon"
+          />
+          <small>{{ car?.seats }} Seats</small>
+        </li>
+        <li>
+          <img
+            src="/assets/images/icons/door.svg"
+            alt="Door icon"
+            class="icon"
+          />
+          <small>{{ car?.doors }} Doors</small>
+        </li>
+      </div>
+      <div>
+        <li>
+          <img
+            src="/assets/images/icons/gear.svg"
+            alt="Gear icon"
+            class="icon"
+          />
+          <small>{{ car?.gearBox }}</small>
+        </li>
+        <li>
+          <img
+            src="/assets/images/icons/pump.svg"
+            alt="Pump icon"
+            class="icon"
+          />
+          <small>{{ car?.fuelType }}</small>
+        </li>
+      </div>
+      <div>
+        <li>
+          <img
+            src="/assets/images/icons/calendar.svg"
+            alt="Calendar icon"
+            class="icon"
+          />
+          <small>{{ car?.yearMade }}</small>
+        </li>
+        <li>
+          <img
+            src="/assets/images/icons/engin.svg"
+            alt="Engin icon"
+            class="icon"
+          />
+          <small>{{ car?.engine }}</small>
+        </li>
+      </div>
+    </ul>
+    <ul class="flex gap-10">
+      <li>
+        <img
+          src="/assets/images/icons/location.svg"
+          alt="Location icon"
+          class="icon"
+        />
+        <small> {{ car?.location?.locationName }} </small>
+      </li>
+      <li>
+        <img
+          [src]="
+            '/assets/images/icons/'.concat(
+              car?.status === 'AVAILABLE' ? 'available.svg' : 'not-available.svg'
+            )
+          "
+          alt="Location icon"
+          class="icon"
+        />
+        <small> {{ car?.status }}</small>
+      </li>
+    </ul>
+    <div class="h-[1px] w-1/2 bg-clr-gray-4"></div>
+    <div class="flex items-center gap-20">
+      <div class="flex items-center">
+        <p class="font-bold">{{ car?.price }}€</p>
+        <span class="font-light text-clr-gray-5">/</span>
+        <span class="font-light text-[12px] text-clr-gray-5">day</span>
+      </div>
+      <a [routerLink]="[path, car?.carID]">
+        <button class="btn btn-primary-outline">Details</button>
+      </a>
+    </div>
+  </div>
+</li>

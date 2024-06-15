@@ -1,0 +1,21 @@
+<div class="wrapper pb-72 flex flex-col gap-20 justify-center">
+    <app-navbar></app-navbar>
+    <div class="wrapper">
+        <h1 class="text-4xl font-extrabold text-clr-black">Admin dashboard</h1>
+        <div class="bg-slate-700 w-full h-0.5 mt-2"></div>
+        <div class="w-full">
+            <section class="py-24 lg:px-0"> 
+                <div class="custom-holder container mx-auto px-[12px] md:px-24 xl:px-12 max-w-[1300px] nanum2">
+                    <div class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-x-16 gap-y-28 lg:gap-y-16">
+                        @for (item of serviceList; track $index) {
+                            <a [routerLink]="[item.routeLink]">
+                                <app-dash-card [item]=item></app-dash-card>
+                            </a>
+                        }
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>
+<app-footer></app-footer>
