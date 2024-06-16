@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {NavbarComponent} from '../landing-page/navbar/navbar.component';
 import {CommonModule} from '@angular/common';
-import {MapComponent} from "../../components/map/map.component";
 import {FooterComponent} from "../../components/footer/footer.component";
 
 @Component({
@@ -10,8 +9,7 @@ import {FooterComponent} from "../../components/footer/footer.component";
   imports: [
     FooterComponent,
     NavbarComponent,
-    CommonModule,
-    MapComponent
+    CommonModule
   ],
   templateUrl: './locations-page.component.html',
   styleUrl: './locations-page.component.css'

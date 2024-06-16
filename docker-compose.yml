@@ -1,0 +1,52 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:latest
+    environment:
+      POSTGRES_DB: raeda
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: admin
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - app-network
+
+  backend:
+    build: 
+      context: ./Backend/raeda
+      dockerfile: Dockerfile
+    environment:
+      SPRING_APPLICATION_NAME: raeda
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/raeda
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: admin
+      SPRING_JPA_HIBERNATE_DDL_AUTO: update
+      SPRING_JPA_SHOW_SQL: "true"  # Convert boolean to string
+      JWT_KEY: eyJhbGciOiJIUzI1NiJ9.eyJSb2xlIjoiQWRtaW4iLCJJc3N1ZXIiOiJJc3N1ZXIiLCJVc2VybmFtZSI6IkphdmFJblVzZSIsImV4cCI6MTcxODQ4MDQwOSwiaWF0IjoxNzE4NDgwNDA5fQ.P_vgsgNesDllAzYNWhLWaPM4Bswu98vOk4y96dHhILg
+      JWT_ACCESS_TOKEN_EXPIRATION: 86400000
+      JWT_REFRESH_TOKEN_EXPIRATION: 86400000
+    ports:
+      - "8080:8080"
+    depends_on:
+      - postgres
+    networks:
+      - app-network
+
+  frontend:
+    build:
+      context: ./Frontend/raeda
+      dockerfile: Dockerfile
+    ports:
+      - "80:80"
+    networks:
+      - app-network
+
+volumes:
+  postgres_data:
+
+networks:
+  app-network:
+    driver: bridge

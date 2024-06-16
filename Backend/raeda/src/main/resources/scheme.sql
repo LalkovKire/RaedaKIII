@@ -63,5 +63,3 @@ create table RentalReview
     FOREIGN KEY (userID) REFERENCES carUser (userID),
     FOREIGN KEY (rentalID) REFERENCES Rental (rentalID)
 );
-
------------------------ Do this change or make a migration
