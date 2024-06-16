@@ -1,0 +1,28 @@
+name: CI Pipeline
+
+on:
+  push:
+    branches:
+      - master  
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Build and Dockerize Spring Boot
+        working-directory: Backend/raeda
+        run: |
+          docker build -t lalkovkire2694/spring-backend-kiii:${{ github.sha }} .
+          docker login -u lalkovkire2694 -p ${{ secrets.DOCKERHUB_TOKEN }}
+          docker push lalkovkire2694/spring-backend-kiii:${{ github.sha }}
+
+      - name: Build and Dockerize Angular
+        working-directory: Frontend/raeda
+        run: |
+          docker build -t lalkovkire2694/angular-frontend-kiii:${{ github.sha }} .
+          docker login -u lalkovkire2694 -p ${{ secrets.DOCKERHUB_TOKEN }}
+          docker push lalkovkire2694/angular-frontend-kiii:${{ github.sha }}
