@@ -1,0 +1,57 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: spring-boot-app
+  namespace: kire-kiii
+  labels:
+    app: spring-boot-app
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      app: spring-boot-app
+  template:
+    metadata:
+      labels:
+        app: spring-boot-app
+    spec:
+      containers:
+        - name: spring-boot-app
+          image: lalkovkire2694/spring-backend-kiii:1d8ac297c134ef3ca2f1f5fdeec6321998aa64b1 
+          ports:
+            - containerPort: 8080
+          env:
+            - name: SPRING_APPLICATION_NAME
+              value: "raeda"
+            - name: SPRING_DATASOURCE_URL
+              value: "jdbc:postgresql://postgres:5432/raeda"
+            - name: SPRING_DATASOURCE_USERNAME
+              value: "postgres"
+            - name: SPRING_DATASOURCE_PASSWORD
+              value: "admin"
+            - name: SPRING_JPA_HIBERNATE_DDL_AUTO
+              value: "update"
+            - name: SPRING_JPA_SHOW_SQL
+              value: "true"
+            - name: JWT_KEY
+              value: "eyJhbGciOiJIUzI1NiJ9.eyJSb2xlIjoiQWRtaW4iLCJJc3N1ZXIiOiJJc3N1ZXIiLCJVc2VybmFtZSI6IkphdmFJblVzZSIsImV4cCI6MTcxODQ4MDQwOSwiaWF0IjoxNzE4NDgwNDA5fQ.P_vgsgNesDllAzYNWhLWaPM4Bswu98vOk4y96dHhILg"
+            - name: JWT_ACCESS_TOKEN_EXPIRATION
+              value: "86400000"
+            - name: JWT_REFRESH_TOKEN_EXPIRATION
+              value: "86400000"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: service-backend
+  namespace: kire-kiii
+  labels:
+    app: spring-boot-app
+spec:
+  selector:
+    app: spring-boot-app
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 8080
+  type: ClusterIP
